@@ -2,9 +2,10 @@
 #include <stdlib.h>
 
 #include "tablaSimbolos.h"
-#include "sistemaDeEntrada.h"
 #include "analizadorSintactico.h"
 #include "errores.h"
+#include "lex.yy.h"
+
 
 //fichero con el código fuente
 FILE *fuente;
@@ -24,7 +25,8 @@ int main(int argc, char const *argv[])
 
     inicializarTabla();
     imprimirTabla();
-    iniciarBuffer(fuente);
+    
+    abrirFichero(fuente);
 
 
     //COMENZAR BUCLE

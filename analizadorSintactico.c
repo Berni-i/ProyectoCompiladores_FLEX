@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "analizadorLexico.h"
 #include "string.h"
-
+#include "lex.yy.h"
 
 void comenzarLectura(){
     tipoelem *e;
