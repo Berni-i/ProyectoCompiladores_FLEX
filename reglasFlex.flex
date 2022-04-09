@@ -3,23 +3,43 @@
 #include "tablaSimbolos.h"
 %}
 
-LETRA               [a-zA-Z]|"_" 
-DIGITO              [0-9]
+LETRA              [a-zA-Z]|"_"
+DIGITO             [0-9]
 DIGITO_BINARIO      [0-1]
 DIGITO_OCTAL        [0-7]
 DIGITO_HEX          [0-9]|[A-F]|[a-f]
 
 
-DIGITOS_DECIMAL     = {DIGITO}({DIGITO})*
-DIGITOS_BINARIO     = {DIGITO_BINARIO}((_)?{DIGITO_BINARIO})*
-DIGITOS_OCTAL       = {DIGITO_OCTAL}((_)?{DIGITO_OCTAL})*
-DIGITOS_HEX         = {DIGITO_HEX}((_)?{DIGITO_HEX})*
+DIGITOS_DECIMAL     {DIGITO}({DIGITO})*
+DIGITOS_BINARIO     {DIGITO_BINARIO}((_)?{DIGITO_BINARIO})*
+DIGITOS_OCTAL       {DIGITO_OCTAL}((_)?{DIGITO_OCTAL})*
+DIGITOS_HEX         {DIGITO_HEX}((_)?{DIGITO_HEX})*
 
-LITERAL_DECIMAL     = [0-9]((_)?{DIGITOS_DECIMAL})?
-LITERAL_BINARIO     = 0[Bb](_)?{DIGITOS_BINARIO}
-LITERAL_OCTAL       = 0[Oo](_)?{DIGITOS_OCTAL}
-LITERAL_HEX         = 0[Xx](_)?{DIGITOS_HEX}
-LITERAL_ENTERO      = {LITERAL_DECIMAL}|{LITERAL_BINARIO}|{LITERAL_OCTAL}|{LITERAL_HEX}
+LITERAL_DECIMAL     [0-9]((_)?{DIGITOS_DECIMAL})?
+LITERAL_BINARIO     0[Bb](_)?{DIGITOS_BINARIO}
+LITERAL_OCTAL       0[Oo](_)?{DIGITOS_OCTAL}
+LITERAL_HEX         0[Xx](_)?{DIGITOS_HEX}
+LITERAL_ENTERO      {LITERAL_DECIMAL}|{LITERAL_BINARIO}|{LITERAL_OCTAL}|{LITERAL_HEX}
+
+
+
+
+EXPONENTE_DECIMAL       [Ee][+-]{DIGITOS_DECIMAL}
+LITERAL_FLOAT_DECIMAL   {DIGITOS_DECIMAL}.({DIGITOS_DECIMAL})?({EXPONENTE_DECIMAL})?|{DIGITOS_DECIMAL}{EXPONENTE_DECIMAL}|.{DIGITOS_DECIMAL}({EXPONENTE_DECIMAL})?
+
+
+MANTISA_HEX             (_)?{DIGITOS_HEX}.({DIGITOS_HEX})?|(_)?{DIGITOS_HEX}|.{DIGITOS_HEX}
+EXPONENTE_HEX           [Pp][+-]{DIGITOS_DECIMAL}
+
+LITERAL_FLOAT_HEX       0[Xx]{MANTISA_HEX}{EXPONENTE_HEX}
+
+
+LITERAL_FLOAT           {LITERAL_FLOAT_DECIMAL}|{LITERAL_FLOAT_HEX}
+
+
+
+
+
 
 LITERAL_STRING      ["].+["]
 
@@ -40,6 +60,8 @@ FLECHAIZQ           <-
 
 {LITERAL_ENTERO}        return ENTERO;
 
+{LITERAL_FLOAT}         return FLOTANTES;
+
 {LITERAL_STRING}        return CADENAS;
 
 {MASIG}                 return MASIGUAL;
@@ -48,8 +70,8 @@ FLECHAIZQ           <-
 
 
 [ \t\n]+        /* se come los espacios en blanco */
-\/\/(.*) 					
-\/\*(.*\n)*.*\*\/  		       
+\/\/(.*)
+\/\*(.*\n)*.*\*\/
 
 
 .                       return (int) *yytext;
@@ -62,7 +84,7 @@ void abrirFichero(FILE* fichero){
 
 tipoelem* siguienteElemento(){
     tipoelem *e;
-    
+
     e = malloc(sizeof(tipoelem));
 
     e->componenteLexico = yylex();
@@ -77,4 +99,3 @@ tipoelem* siguienteElemento(){
 
     return e;
 }
-
