@@ -23,6 +23,7 @@ int main(int argc, char const *argv[])
         exit(1);
     }
 
+    //introducir las palabras reservadas en la tabla
     inicializarTabla();
     imprimirTabla();
     
@@ -37,6 +38,8 @@ int main(int argc, char const *argv[])
     imprimirTabla();
     //cerrar el fichero
     fclose(fuente);
+    //yylex_destoy
+    terminarAnalisis();
     //destruir la tabla de símbolos
     destruirTabla();
     

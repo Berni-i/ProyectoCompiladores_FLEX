@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 13
-#define YY_END_OF_BUFFER 14
+#define YY_NUM_RULES 18
+#define YY_END_OF_BUFFER 19
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,15 +362,15 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[86] =
     {   0,
-        0,    0,   14,   12,    1,    1,   12,   12,   12,   12,
+        0,    0,   19,   12,    1,    1,   12,   12,   12,   12,
         5,    5,   12,   12,    4,    1,    0,    9,    6,    0,
-        2,    6,    5,    0,    0,    0,    0,    0,    8,   10,
-       11,    4,    7,    6,    0,    0,    0,    0,    0,    2,
-        6,    0,    5,    0,    5,    0,    0,    6,    5,    0,
-        0,    5,    0,    0,    6,    3,    6,    0,    0,    6,
-        5,    0,    6,    0,    5,    0,    0,    0,    5,    0,
-        0,    6,    0,    6,    0,    0,    0,    0,    0,    6,
-        0,    0,    6,    0,    0
+        2,    6,    5,   16,   13,   17,   15,    0,    8,   10,
+       11,    4,    7,    6,   13,    0,    0,    0,    0,    2,
+        6,   13,    5,    0,    5,   16,   13,    6,    5,   17,
+        0,    5,   15,   13,    6,    3,    6,    0,   13,    6,
+        5,    0,    6,    0,    5,    0,   14,   14,    5,    0,
+        0,    6,    0,    6,    0,   14,    0,   14,    0,    6,
+       14,    0,    6,    0,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -553,14 +553,16 @@ char *yytext;
 #line 1 "reglasFlex.flex"
 #line 2 "reglasFlex.flex"
 #include "definiciones.h"
+#include "errores.h"
 #include "tablaSimbolos.h"
-#line 558 "lex.yy.c"
-#line 13 "reglasFlex.flex"
+#line 559 "lex.yy.c"
+#line 8 "reglasFlex.flex"
+    //caracteres
     //enteros
     //floats
     //imaginarios
 #define YY_NO_INPUT 1
-#line 564 "lex.yy.c"
+#line 566 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -775,10 +777,10 @@ YY_DECL
 		}
 
 	{
-#line 51 "reglasFlex.flex"
+#line 53 "reglasFlex.flex"
 
 
-#line 782 "lex.yy.c"
+#line 784 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -838,71 +840,96 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 53 "reglasFlex.flex"
+#line 55 "reglasFlex.flex"
 /* se come los espacios en blanco */
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 54 "reglasFlex.flex"
-
+#line 56 "reglasFlex.flex"
+/*comentario de una sola línea*/
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 55 "reglasFlex.flex"
-
+#line 57 "reglasFlex.flex"
+/*comentarios de varias líneas*/
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 58 "reglasFlex.flex"
+#line 60 "reglasFlex.flex"
 return devolverComponente(yytext); /*Identificador*/
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 60 "reglasFlex.flex"
+#line 62 "reglasFlex.flex"
 return ENTERO;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 62 "reglasFlex.flex"
+#line 64 "reglasFlex.flex"
 return FLOTANTES;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 64 "reglasFlex.flex"
+#line 66 "reglasFlex.flex"
 return CADENAS;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 66 "reglasFlex.flex"
+#line 68 "reglasFlex.flex"
 return IMAGINARIOS;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 68 "reglasFlex.flex"
+#line 70 "reglasFlex.flex"
 return MASIGUAL;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 69 "reglasFlex.flex"
+#line 71 "reglasFlex.flex"
 return DOSPUNTOSIGUAL;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 70 "reglasFlex.flex"
+#line 72 "reglasFlex.flex"
 return FLECHAIZQUIERDA;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 72 "reglasFlex.flex"
+#line 74 "reglasFlex.flex"
 return (int) *yytext;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 74 "reglasFlex.flex"
+#line 77 "reglasFlex.flex"
+mostrarError(3);
+	YY_BREAK
+case 14:
+YY_RULE_SETUP
+#line 78 "reglasFlex.flex"
+mostrarError(3);
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 79 "reglasFlex.flex"
+mostrarError(4);
+	YY_BREAK
+case 16:
+YY_RULE_SETUP
+#line 80 "reglasFlex.flex"
+mostrarError(5);
+	YY_BREAK
+case 17:
+YY_RULE_SETUP
+#line 81 "reglasFlex.flex"
+mostrarError(6);
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 83 "reglasFlex.flex"
 ECHO;
 	YY_BREAK
-#line 906 "lex.yy.c"
+#line 933 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1870,13 +1897,16 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 74 "reglasFlex.flex"
+#line 83 "reglasFlex.flex"
 
 
+//función para pasar como argumento el fichero que contendrá el código que se quiere analizar
 void abrirFichero(FILE* fichero){
     if(fichero != NULL) yyin = fichero;
 }
 
+//función que permitirá ir obteniendo un puntero a la estructura que contenga el siguiente
+//componente léxico o el valor NULL en caso de que se haya alcanzado EOF
 tipoelem* siguienteElemento(){
     tipoelem *e;
 
@@ -1895,3 +1925,7 @@ tipoelem* siguienteElemento(){
     return e;
 }
 
+//función que permitirá llamar a yylex_destroy, que liberará los recursos utilizado por el escáner
+void terminarAnalisis(){
+    yylex_destroy();
+}

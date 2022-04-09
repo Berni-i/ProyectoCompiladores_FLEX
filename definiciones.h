@@ -23,7 +23,8 @@
 //definición de identificadores
 #define ID 516
 
-//definición del tamaño máximo de la cadena
+//definición del tamaño máximo de la cadena (en esta práctica solo se usa para definir el tamaño en el array de
+//palabras reservadas de la tabla de símbolos)
 #define TAMCADENA 32
 
 //definición de las estrcuturas con las que trabajará el árbol de la tabla de símbolos

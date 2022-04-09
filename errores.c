@@ -8,6 +8,7 @@ void mostrarError(int codigo){
     switch (codigo)
     {
     case 1:
+        //en esta práctica no saltará nunca este error
         printf("Se ha sobrepasado el tamaño máximo de lexema. Tamaño máximo: %d\n", TAMCADENA);
         break;
 
@@ -21,6 +22,14 @@ void mostrarError(int codigo){
 
     case 4:
         printf("Prefijo hexadecimal sin número\n");
+        break;
+
+    case 5:
+        printf("Prefijo binario sin número\n");
+        break;
+
+    case 6:
+        printf("Prefijo octal sin número\n");
         break;
 
     }
